@@ -15,6 +15,8 @@ gem 'devise'
 gem 'haml-rails'
 gem 'pundit'
 gem 'simple_form'
+gem 'pg', '0.15.1'
+gem 'rails_12factor', '0.0.2'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
@@ -30,7 +32,6 @@ group :development do
   gem 'rb-inotify', :require=>false
 end
 group :development, :test do
-  gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'shoulda'
@@ -42,7 +43,4 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
-group :production do
-  gem 'pg', '0.15.1'
-  gem 'rails_12factor', '0.0.2'
-end
+
