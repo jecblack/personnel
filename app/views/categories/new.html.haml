@@ -1,0 +1,5 @@
+%h1 Add a new category
+=simple_form_for @category do |f|
+  =f.input :name
+  %p
+  =f.submit "Add category", class: 'button-xs'

@@ -1,0 +1,14 @@
+.container-md-12
+  .row
+    .col-md-11.text-left
+      %h3.text-left Personnel 
+      - @people.each do |person|  
+        = link_to person.name, person
+        %span.col-md-offset-3
+          = link_to "Show detail", person_path(person), class: 'btn btn-info btn-xs'
+          = link_to "Update", edit_person_path(person), class: 'btn btn-primary btn-xs' 
+          = link_to "Delete", person_path(person), :data => { confirm: "Are you sure?" }, method: :delete, :class => 'btn btn-danger btn-xs' 
+        %ul
+          - person.categories.each do |category| 
+          %li               
+            = category.name.to_s unless category.name.blank? 

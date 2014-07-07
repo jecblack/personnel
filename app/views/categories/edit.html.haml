@@ -1,0 +1,6 @@
+%h1 Edit a category
+=simple_form_for @category, url: category_path(@category), method: :patch do |f|
+  =f.input :name
+
+  %p
+  =f.submit "Update person", class: 'button-xs'

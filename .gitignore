@@ -67,6 +67,8 @@ pickle-email-*.html
 
 # RubyMine project files
 .idea
+.secret
+.project
 
 # Textmate project files
 /*.tmproj
@@ -77,3 +79,19 @@ pickle-email-*.html
 # Environment files that may contain sensitive data
 .env
 .powenv
+*~
+*.swp
+doc/
+database.yml
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+

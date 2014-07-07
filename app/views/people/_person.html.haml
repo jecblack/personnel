@@ -1,0 +1,10 @@
+=simple_form_for @person do |f|
+  =f.input :name
+  =f.input :address
+  =f.input :city
+  =f.input :state
+  =f.input :zip
+  =f.input :tel, placeholder: '(123) 456-7890'
+  =f.input :email, placeholder: 'user@example.com'
+  %p
+  =f.submit "Add person", class: 'button-xs'

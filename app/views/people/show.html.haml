@@ -1,0 +1,30 @@
+%h3 Volunteer
+%p
+  Name: 
+  = @person.name if @person.name 
+%p
+  Email: 
+  = @person.email if @person.email 
+%p
+  Address: 
+  = @person.address if @person.address
+%p
+  City:
+  = @person.city if @person.city
+%p
+  State:
+  = @person.state if @person.state
+%p
+  Zip:
+  = @person.zip if @person.zip
+%p
+  Telephone:
+  = @person.tel if @person.tel
+%p
+  - @person.categories.each do |category|
+    %ul
+      = category.name
+  = link_to "Edit record", edit_person_path(@person), class: 'button-xs'
+  = link_to "Delete record", person_path(@person), :data => { confirm: "Are you sure?" }, method: :delete, class: 'button-xs'
+  = link_to "Show all", people_path(), class: 'button-xs'
+
