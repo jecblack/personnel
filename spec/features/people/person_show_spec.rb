@@ -1,5 +1,3 @@
-include Warden::Test::Helpers
-Warden.test_mode!
 
 # Feature: People listing page
 #   As an administrator
@@ -7,9 +5,6 @@ Warden.test_mode!
 #   So I can see all personnel
 feature 'Person index page', :devise do
 
-  after(:each) do
-    Warden.test_reset!
-  end
 
   # Scenario: Administrator views all personnel
   #   Given I am signed in
@@ -47,6 +42,16 @@ feature 'Person index page', :devise do
     Capybara.current_session.driver.header 'Referer', root_path
     visit people_path()
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
+  end
+  
+  scenario 'more than 10 people should paginate' do
+    user = FactoryGirl.create(:user, role: :admin)
+    signin(user.email, user.password)
+
+        30.times { FactoryGirl.create(:person, name: "J Q Public") }
+        visit people_path
+        page.should have_selector("div.pagination")
+              
   end
   
 

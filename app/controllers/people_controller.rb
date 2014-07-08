@@ -20,7 +20,7 @@ class PeopleController < ApplicationController
   end
   
   def index
-    @people = Person.order(:name)
+    @people = Person.order(:name).paginate(:page => params[:page], per_page: '10')
   end
   
   def show
