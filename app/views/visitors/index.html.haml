@@ -1,0 +1,28 @@
+#welcomeCarousel.carousel.slide
+  %ol.carousel-indicators
+    %li{"data-target" => "welcomeCarousel", "data-slide-to" => "0", class: :active}
+    %li{"data-target" => "welcomeCarousel", "data-slide-to" => "1"}
+    %li{"data-target" => "welcomeCarousel", "data-slide-to" => "2"}
+  .carousel-inner
+    .item.active
+      %img{:src=>"/assets/Bench.jpg", :alt=>"Volunteer installing a bench", :class => 'image-responsive'}
+      %h3.carousel-caption Volunteer installing a bench
+    .item
+      %img{:src=>"/assets/Chevron.jpg", :alt=>"Chevron volunteers", :class => 'image-responsive'}
+      %h3.carousel-caption Chevron volunteers packing food boxes
+    .item
+      %img{:src=>"/assets/Sleep Train.jpg", :alt=>"Sleep Train volunteers", :class => 'image-responsive'}
+      %h3.carousel-caption Sleep Train volunteers
+       
+  %a.left.carousel-control{:href=> "#welcomeCarousel", :data =>{:slide => "prev"}}
+    %span.glyphicon.glyphicon-chevron-left
+  
+  %a.right.carousel-control{:href=> "#welcomeCarousel", :data =>{:slide => "next"}}
+    %span.glyphicon.glyphicon-chevron-right
+.container
+  %h3 Welcome
+  %p
+    = link_to 'Users:', users_path 
+    = User.count  
+    registered
+  
