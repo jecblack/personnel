@@ -14,4 +14,13 @@ class Person < ActiveRecord::Base
   def full_name
     [first_name, name].join(' ')
   end
+  
+  def self.search(search)
+    if search
+      where('name LIKE ?', "%#{search}%").order(name: :asc, first_name: :asc)
+    else
+      order(name: :asc, first_name: :asc)
+    end      
+  end
+  
 end
