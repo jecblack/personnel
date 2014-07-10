@@ -1,0 +1,19 @@
+.container-xs-12
+  .row
+    .col-xs-11.text-left
+      %h3.text-left Personnel 
+      = will_paginate @people
+      <p></p>
+      - @people.each do |person| 
+        .col-xs-6.pull-left
+          <a data-toggle = "collapse", data-target = "#detail#{person.id}">#{person.name}</a>
+        .collapse{:id => "detail#{person.id}"}
+          - person.categories.each do |category| 
+            %br
+            = category.name.to_s unless category.name.blank? 
+        %span.col-xs-offset-5.pull-left
+          = link_to "Show detail", person_path(person), class: 'btn btn-info btn-xs'
+          = link_to "Update", edit_person_path(person), class: 'btn btn-primary btn-xs'
+          = link_to "Delete", person_path(person), :data => { confirm: "Are you sure?" }, method: :delete, :class => 'btn btn-danger btn-xs'           
+    .col-xs-11.text-left
+      = will_paginate @people, :class => 'clearfix pagination' 
