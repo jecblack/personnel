@@ -7,7 +7,7 @@
       - @people.each do |person| 
         .col-xs-6.pull-left
           <a data-toggle = "collapse", data-target = "#detail#{person.id}">#{person.name}</a>
-        .collapse{:id => "detail#{person.id}"}
+        .collapse.col-xs-6.pull-left{:id => "detail#{person.id}"}
           - person.categories.each do |category| 
             %br
             = category.name.to_s unless category.name.blank? 
