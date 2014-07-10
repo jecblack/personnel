@@ -20,7 +20,12 @@ class PeopleController < ApplicationController
   end
   
   def index
-    @people = Person.order(:name, :first_name).paginate(:page => params[:page], per_page: '10')
+    if params[:search]
+      result = Person.where('name LIKE ?', "%#{params[:search]}%").order(name: :asc, first_name: :asc)
+    else
+      result = Person.order(name: :asc, first_name: :asc)
+    end    
+    @people = result.paginate(:page => params[:page], per_page: '10')
   end
   
   def show
