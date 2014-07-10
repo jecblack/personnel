@@ -1,6 +1,7 @@
 %h1 Add a new person
 =simple_form_for @person do |f|
-  =f.input :name
+  =f.input :first_name, label: "First name"
+  =f.input :name, label: "Last name"
   =f.input :address
   =f.input :city
   =f.input :state
