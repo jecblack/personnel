@@ -1,4 +1,4 @@
-namespace :db do
+namespace :loader do
   require 'faker'
   desc "Erase and fill datbase with fake records"
   task populate: :environment do
