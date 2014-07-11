@@ -47,6 +47,7 @@ class PeopleController < ApplicationController
   private
 
   def secure_params
-    params.require(:person).permit(:first_name, :name, :address, :city, :state, :zip, :tel, :email, :new_category_name, category_ids: [])
+    params.require(:person).permit(:first_name, :name, :address, :city, :state, :zip, :tel, :email, :birthday, 
+    :birthday_text, :new_category_name, category_ids: [])
   end
 end

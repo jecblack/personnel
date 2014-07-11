@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
+#gem 'spring',        group: :development
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml-rails'
@@ -18,12 +18,13 @@ gem 'simple_form'
 gem 'pg', '0.15.1'
 gem 'rails_12factor', '0.0.2'
 gem 'will_paginate', '~> 3.0'
+gem 'chronic'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
-  gem 'guard-bundler'
-  gem 'guard-rails'
-  gem 'guard-rspec'
+#  gem 'guard-bundler'
+#  gem 'guard-rails'
+#  gem 'guard-rspec'
   gem 'html2haml'
   gem 'hub', :require=>nil
   gem 'quiet_assets'

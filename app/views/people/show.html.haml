@@ -21,6 +21,9 @@
   Telephone:
   = @person.tel if @person.tel
 %p
+  Birthday:
+  = @person.birthday_text if @person.birthday
+%p
   - @person.categories.each do |category|
     %ul
       = category.name
