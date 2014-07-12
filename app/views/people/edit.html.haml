@@ -9,6 +9,7 @@
   =f.input :tel, placeholder: '(123) 456-7890'
   =f.input :email, placeholder: 'user@example.com'
   =f.input :birthday_text, placeholder: 'ex Feb 14, 2000', label: "Birthday"
+  =f.input :anniversary_text, placeholder: 'ex Feb 14, 2000', label: "Anniversary"
   =f.association :categories, label: 'Categories', collection: Category.all, input_html: {class: 'multiselectcategory'}
   = "Select from list, or create new category: "
   =f.input :new_category_name, input_html: {value: f.object.new_category_name}

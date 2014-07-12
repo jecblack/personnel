@@ -20,7 +20,7 @@ class PeopleController < ApplicationController
   end
   
   def index
-    @people = Person.search(params[:search]).paginate(:page => params[:page], per_page: '10')
+    @people = Person.search(params[:query]).paginate(:page => params[:page], per_page: '10')
   end
   
   def show
@@ -48,6 +48,6 @@ class PeopleController < ApplicationController
 
   def secure_params
     params.require(:person).permit(:first_name, :name, :address, :city, :state, :zip, :tel, :email, :birthday, 
-    :birthday_text, :new_category_name, category_ids: [])
+    :birthday_text, :anniversary, :anniversary_text, :new_category_name, category_ids: [])
   end
 end

@@ -2,14 +2,7 @@
   .row
     .col-xs-11.text-left
       %h3.text-left Personnel
-    .col-xs-11.text-left 
-      .col-xs-6.col-md-6.pull-left
-        %form.navbar-form{ role: :search}
-          .input-group
-            %input#search.form-control{ type: :text, placeholder: "Search", name: :search, action: "#{people_path}", method: :get}
-              .input-group-btn
-                %button.btn.btn-default.glyphicon.glyphicon-search{type: :submit}
-      .col-xs-11.text-left          
+    .col-xs-11.text-left         
       <p></p>
       - @people.each do |person| 
         .col-xs-6.pull-left
