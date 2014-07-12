@@ -1,6 +1,6 @@
 class Person < ActiveRecord::Base
   include PgSearch
-  pg_search_scope :search_by_name, against: [:name, :first_name],
+  pg_search_scope :search_by_name, against: [:name, :first_name, :notes],
     using: {tsearch: {dictionary: "english", prefix: true, any_word: true}, }, associated_against: {categories: :name}
     
   has_many :categorizations
@@ -12,6 +12,7 @@ class Person < ActiveRecord::Base
   before_save :save_birthday_text
   before_save :save_anniversary_text
   before_save :build_category_from_name
+  validates_presence_of :first_name, :name
   
   def build_category_from_name
     self.categories.build(name: "#{new_category_name}") unless new_category_name.blank? 

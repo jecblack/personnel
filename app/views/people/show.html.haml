@@ -25,8 +25,12 @@
   = @person.birthday_text if @person.birthday
 %p
   Anniversary:
-  = @person.anniversary_text if @person.anniversary  
+  = @person.anniversary_text if @person.anniversary
 %p
+  Notes:
+  = @person.notes if @person.notes   
+%p
+  Categories:
   - @person.categories.each do |category|
     %ul
       = category.name
