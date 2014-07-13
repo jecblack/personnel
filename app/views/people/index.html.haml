@@ -2,7 +2,8 @@
   .row
     .col-xs-11.text-left
       %h3.text-left Personnel
-    .col-xs-11.text-left         
+    .col-xs-11.text-left 
+      
       <p></p>
       - @people.each do |person| 
         .col-xs-6.pull-left
@@ -17,3 +18,5 @@
           = link_to "Delete", person_path(person), :data => { confirm: "Are you sure?" }, method: :delete, :class => 'btn btn-danger btn-xs'           
     .col-xs-11.text-left
       = will_paginate @people, :class => 'clearfix pagination' 
+      <p></p>
+      = link_to "Download PDF", people_path(format: "pdf"), class: 'btn btn-default btn-xs pull-left'       

@@ -23,11 +23,10 @@ class Person < ActiveRecord::Base
   end
   
   def self.search(query)
-    if query
-      search_by_name(query)
-      #where("name @@ :q or first_name @@ :q", q: search).order(name: :asc, first_name: :asc)
-    else
+    if query.blank?
       order(name: :asc, first_name: :asc)
+    else
+      search_by_name(query)
     end      
   end
   

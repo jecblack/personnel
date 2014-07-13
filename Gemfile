@@ -20,6 +20,7 @@ gem 'rails_12factor', '0.0.2'
 gem 'will_paginate', '~> 3.0'
 gem 'chronic'
 gem 'pg_search'
+gem 'prawn'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
