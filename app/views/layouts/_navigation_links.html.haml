@@ -12,7 +12,7 @@
 - if user_signed_in? 
   - if current_user.admin? 
     %li.dropdown
-      <a class='dropdown-toggle' data-toggle = 'dropdown' href: "#">Actions<b class="caret"></b></a> 
+      <a class='dropdown-toggle' data-toggle = 'dropdown' href: "#" style="z-index:1000;">Actions<b class="caret"></b></a> 
       %ul.dropdown-menu
         %li
           = link_to 'List Personnel', people_path 
