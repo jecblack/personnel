@@ -7,7 +7,7 @@
       <p></p>
       - @people.each do |person| 
         .col-xs-6.pull-left
-          <a data-toggle = "collapse",  data-target="#detail#{person.id}", style="z-index:1000;">#{person.full_name}</a>
+          <a data-toggle = "collapse",  data-target="#detail#{person.id}", href = "#detail#{person.id}">#{person.full_name}</a>
         .collapse.col-xs-6.pull-left{:id => "detail#{person.id}"}
           - person.categories.each do |category| 
             %br
