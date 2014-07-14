@@ -10,15 +10,13 @@
   %li
     = link_to 'Sign up', new_user_registration_path 
 - if user_signed_in? 
-  - if current_user.admin? 
-    %li.dropdown
-      <a class='dropdown-toggle' data-toggle = 'dropdown' href: 'dropdown' style="z-index:1000;">Actions<b class="caret"></b></a> 
-      %ul.dropdown-menu
-        %li
-          = link_to 'List Personnel', people_path 
-        %li
-          = link_to 'Add Personnel', new_person_path 
-        %li
-          = link_to 'List Categories', categories_path
-        %li
-          = link_to 'Add Category', new_category_path         
+  - if current_user.admin?
+    %li   
+      .dropdown.actions
+        %button#dropdownMenu1.btn.btn-default.dropdown-toggle{:type => "button", "data-toggle" => "dropdown"}Actions<span class="caret"></span>
+        %ul.dropdown-menu{:role => "menu", "aria-labelledby" => "dropdownMenu1"}
+          %li{role: "presentation"} <a role="menuitem" tabindex="-1" href="#{people_path}">List Personnel</a>
+          %li{role: "presentation"} <a role="menuitem" tabindex="-1" href="#{new_person_path}">Add Personnel</a>
+          %li.divider{role: "presentation"}
+          %li{role: "presentation"} <a role="menuitem" tabindex="-1" href="#{categories_path}">List Categories</a>
+          %li{role: "presentation"} <a role="menuitem" tabindex="-1" href="#{new_category_path}">Add Category</a>

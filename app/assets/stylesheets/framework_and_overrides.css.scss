@@ -79,6 +79,9 @@ section {
   @extend .btn-primary;
   @extend .btn-xs;
 }
+.actions {
+  padding: 6px 12px;
+}
 .pagination {
   background: white;
   cursor: default;
