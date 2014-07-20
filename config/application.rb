@@ -31,6 +31,14 @@ module Personnel
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    config.paths["log"] = '/dev/null'
+    
+    #Workaround for double logging behaviour
+    if Rails.env.development?
+       # Don't log to STDOUT, by default rails s will handle it
+       config.logger = Logger.new('/dev/null')
+     else
+       # Don't log to file, sending everything to unicorn file.
+       config.logger = Logger.new(STDOUT)
+     end
   end
 end

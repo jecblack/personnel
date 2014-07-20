@@ -1,34 +1,41 @@
 %h3 Volunteer
 %p
   Name: 
-  = @person.full_name if @person.name 
+  = @person.full_name 
 %p
   Email: 
-  = @person.email if @person.email 
+  = @person.email 
 %p
   Address: 
-  = @person.address if @person.address
+  = @person.address 
 %p
   City:
-  = @person.city if @person.city
+  = @person.city 
 %p
   State:
-  = @person.state if @person.state
+  = @person.state
 %p
   Zip:
-  = @person.zip if @person.zip
+  = @person.zip 
 %p
   Telephone:
-  = @person.tel if @person.tel
+  = @person.tel 
 %p
   Birthday:
-  = @person.birthday_text if @person.birthday
+  = @person.birthday_text 
 %p
   Anniversary:
-  = @person.anniversary_text if @person.anniversary
+  = @person.anniversary_text 
 %p
   Notes:
-  = @person.notes if @person.notes   
+  = @person.notes if @person.notes
+%p
+  Skills:
+  = raw @person.skill_list.map { |skill| link_to skill, tag_path(skill)}.join(', ')
+%p
+  Interests:
+  - @person.interest_list.each do |interest|
+    = link_to interest, people_path(interest)
 %p
   Categories:
   - @person.categories.each do |category|

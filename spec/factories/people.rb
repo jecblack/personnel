@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :person do
-    name "A. Volunteer"
+    name "Volunteer"
+    first_name "A."
     email "test@example.com"
     address "123 Some Street"
     city "Anywhere"

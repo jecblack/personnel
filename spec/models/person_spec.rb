@@ -18,6 +18,8 @@ describe Person do
   it { should respond_to(:zip) }
   it { should respond_to(:tel) }
   it { should respond_to(:email) }
+  it { should respond_to(:skill_list) }
+  it { should respond_to(:interest_list) }
 
   it "#name returns a string" do
     expect(@person.name).to match 'John Q Public'

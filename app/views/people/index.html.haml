@@ -18,5 +18,12 @@
           = link_to "Delete", person_path(person), :data => { confirm: "Are you sure?" }, method: :delete, :class => 'btn btn-danger btn-xs'           
     .col-xs-11.text-left
       = will_paginate @people, :class => 'clearfix pagination' 
-      <p></p>
+      %p
       = link_to "Download PDF", people_path(format: "pdf"), class: 'btn btn-default btn-xs pull-left'       
+%br
+.panel-xs-4.panel-collapse.collapse.in#tag_cloud
+  .panel-body
+    - tag_cloud @tags, %w[s m l] do |tag, css_class|
+      = link_to tag.name, tag_path(tag.name), class: css_class
+%button.btn.btn-default.btn-xs{type: :button, 'data-toggle' => :collapse, 'data-target' => "#tag_cloud"}
+  Show/Hide Tags        

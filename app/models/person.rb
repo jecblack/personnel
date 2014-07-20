@@ -5,14 +5,12 @@ class Person < ActiveRecord::Base
     
   has_many :categorizations
   has_many :categories, -> { order 'categories.name' }, through: :categorizations
-  attr_accessor :new_category_name
-  attr_accessor :full_name
-  attr_writer :birthday_text
-  attr_writer :anniversary_text  
-  before_save :save_birthday_text
-  before_save :save_anniversary_text
-  before_save :build_category_from_name
+  attr_accessor :new_category_name, :full_name
+  attr_writer :birthday_text, :anniversary_text  
+  before_save :save_birthday_text, :build_category_from_name, :save_anniversary_text
   validates_presence_of :first_name, :name
+  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
   
   def build_category_from_name
     self.categories.build(name: "#{new_category_name}") unless new_category_name.blank? 

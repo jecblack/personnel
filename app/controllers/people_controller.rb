@@ -4,6 +4,10 @@ class PeopleController < ApplicationController
   require 'pp'
   before_filter :authenticate_user!
 
+  def skill_cloud
+      @tags = Person.tag_counts_on(:skills) + Person.tag_counts_on(:interests)
+  end
+  
   def new
     @person = Person.new
   end
@@ -22,41 +26,18 @@ class PeopleController < ApplicationController
   end
   
   def index
-     
+    skill_cloud 
     respond_to do |format|
       format.html do 
-        if !params[:query].blank?  
-          session[:previous] = params[:query]
-        end
-        session[:query] = params[:query]
-            
-        @people = Person.search(session[:query]).paginate(:page => params[:page], per_page: '10')
-#    puts (" Previous query #{session[:previous]}") 
-#    puts (" Search query #{session[:query]}")
-#    puts (" Current query #{params[:query]}") 
-#    puts('End HTML')    
+        determine_html_search_criteria
+        get_search_results 
       end #HTML
       
       format.pdf do
-        if !session[:previous].blank?
-          session[:query] = session[:previous]
-        end
-        session[:previous]  = params[:query] 
+        determine_pdf_search_criteria
         @people = Person.search(session[:query]) # unpaginated and uses previous search query string
-        pdf = Prawn::Document.new
-        @people.each do |person|
-         pdf.text  person.full_name
-         pdf.text  person.address
-         pdf.text  person.city
-         pdf.text  person.state
-         pdf.text  person.zip
-         pdf.move_down 30 
-        end        
+        pdf = build_pdf
         send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
- # puts (" Previous query #{session[:previous]}") 
- # puts (" Search query #{session[:query]}")
- # puts (" Current query #{params[:query]}") 
- # puts ('end pdf')
       end #PDF
     end
   end
@@ -84,6 +65,41 @@ class PeopleController < ApplicationController
 
   def secure_params
     params.require(:person).permit(:first_name, :name, :address, :city, :state, :zip, :tel, :email, :birthday, 
-    :birthday_text, :anniversary, :anniversary_text, :new_category_name,:notes, category_ids: [])
+    :birthday_text, :anniversary, :anniversary_text, :new_category_name,:notes, 
+    :skill_list, :interest_list, category_ids: [])
+  end
+  
+  def build_pdf
+    pdf = Prawn::Document.new
+    @people.each do |person|
+     pdf.text  person.full_name
+     pdf.text  person.address
+     pdf.text  person.city
+     pdf.text  person.state
+     pdf.text  person.zip
+     pdf.move_down 30 
+    end        
+  end
+  
+  def determine_html_search_criteria
+    if !params[:query].blank?  
+      session[:previous] = params[:query]
+    end
+    session[:query] = params[:query]
+  end
+  
+  def determine_pdf_search_criteria
+    if !session[:previous].blank?
+      session[:query] = session[:previous]
+    end
+    session[:previous]  = params[:query] 
+  end
+  
+  def get_search_results
+    if params[:tag]
+      @people = Person.tagged_with(params[:tag], wild: true).paginate(:page => params[:page], per_page: '10')
+    else    
+      @people = Person.search(session[:query]).paginate(:page => params[:page], per_page: '10')
+    end    
   end
 end
